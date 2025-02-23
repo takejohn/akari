@@ -3,5 +3,11 @@
   "version": "0.1.0",
   "description": "Multifunctional bot for Misskey and Discord",
   "author": "Take-John",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "preinstall": "only-allow pnpm"
+  },
+  "devDependencies": {
+    "only-allow": "^1.2.1"
+  }
 }

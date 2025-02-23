@@ -11,11 +11,19 @@ importers:
       only-allow:
         specifier: ^1.2.1
         version: 1.2.1
+      prettier:
+        specifier: ^3.5.2
+        version: 3.5.2
 
 packages:
 
   only-allow@1.2.1:
     resolution: {integrity: sha512-M7CJbmv7UCopc0neRKdzfoGWaVZC+xC1925GitKH9EAqYFzX9//25Q7oX4+jw0tiCCj+t5l6VZh8UPH23NZkMA==}
+    hasBin: true
+
+  prettier@3.5.2:
+    resolution: {integrity: sha512-lc6npv5PH7hVqozBR7lkBNOGXV9vMwROAPlumdBkX0wTbbzPu/U1hk5yL8p2pt4Xoc+2mkT8t/sow2YrV/M5qg==}
+    engines: {node: '>=14'}
     hasBin: true
 
   which-pm-runs@1.1.0:
@@ -27,5 +35,7 @@ snapshots:
   only-allow@1.2.1:
     dependencies:
       which-pm-runs: 1.1.0
+
+  prettier@3.5.2: {}
 
   which-pm-runs@1.1.0: {}

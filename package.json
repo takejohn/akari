@@ -1,13 +1,15 @@
 {
-  "name": "akari",
-  "version": "0.1.0",
-  "description": "Multifunctional bot for Misskey and Discord",
-  "author": "Take-John",
-  "license": "MIT",
-  "scripts": {
-    "preinstall": "only-allow pnpm"
-  },
-  "devDependencies": {
-    "only-allow": "^1.2.1"
-  }
+    "name": "akari",
+    "version": "0.1.0",
+    "description": "Multifunctional bot for Misskey and Discord",
+    "author": "Take-John",
+    "license": "MIT",
+    "scripts": {
+        "preinstall": "only-allow pnpm",
+        "format": "prettier --write *.{json,js,ts} .prettierrc"
+    },
+    "devDependencies": {
+        "only-allow": "^1.2.1",
+        "prettier": "^3.5.2"
+    }
 }

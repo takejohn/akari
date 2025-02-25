@@ -1,4 +1,4 @@
-import { loadConfig } from 'akari-common';
+import { Handler, loadConfig } from 'akari-common';
 import {
     createBot,
     DiscordMessageReferenceType,
@@ -6,6 +6,7 @@ import {
 } from '@discordeno/bot';
 
 const { discord: config } = await loadConfig();
+const handler = new Handler();
 
 const bot = createBot({
     token: config.token,
@@ -23,24 +24,24 @@ const bot = createBot({
     },
     events: {
         ready() {
-            console.log('Akari on Discord has been booted up!');
+            handler.onStart('Discord');
         },
         async messageCreate(message) {
             try {
-                if (
-                    message.mentions?.some((user) => user.id == bot.id) &&
-                    message.content.includes('ping')
-                ) {
-                    await Promise.all([
-                        bot.helpers.sendMessage(message.channelId, {
-                            content: 'pong!',
-                            messageReference: {
-                                type: DiscordMessageReferenceType.Default,
-                                messageId: message.id,
-                                failIfNotExists: true,
-                            },
-                        }),
-                    ]);
+                if (message.mentions?.some((user) => user.id == bot.id)) {
+                    handler.onMention({
+                        content: message.content,
+                        async reply(content) {
+                            await bot.helpers.sendMessage(message.channelId, {
+                                content: content,
+                                messageReference: {
+                                    type: DiscordMessageReferenceType.Default,
+                                    messageId: message.id,
+                                    failIfNotExists: true,
+                                },
+                            });
+                        },
+                    });
                 }
             } catch (e) {
                 console.error(e);

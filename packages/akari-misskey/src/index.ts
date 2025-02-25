@@ -1,5 +1,5 @@
 import * as Misskey from 'misskey-js';
-import { loadConfig } from 'akari-common';
+import { Handler, loadConfig } from 'akari-common';
 
 const { misskey: config } = await loadConfig();
 const origin = `${config.origin.protocol}//${config.origin.host}`;
@@ -8,28 +8,26 @@ const apiClient = new Misskey.api.APIClient({
     origin,
     credential: config.token,
 });
+const handler = new Handler();
 
 const channel = stream.useChannel('main');
 
 channel.on('mention', async (payload) => {
     try {
-        if (payload.text?.includes('ping')) {
-            await Promise.all([
-                apiClient.request('notes/reactions/create', {
-                    noteId: payload.id,
-                    reaction: '❤️',
-                }),
+        handler.onMention({
+            content: payload.text,
+            async reply(content) {
                 apiClient.request('notes/create', {
                     visibility: payload.visibility,
                     visibleUserIds: payload.visibleUserIds,
                     replyId: payload.id,
-                    text: `${Misskey.acct.toString(payload.user)} pong!`,
-                }),
-            ]);
-        }
+                    text: `@${Misskey.acct.toString(payload.user)} ${content}`,
+                });
+            },
+        });
     } catch (e) {
         console.error(e);
     }
 });
 
-console.log('Akari on Misskey has been booted up!');
+handler.onStart('Misskey');

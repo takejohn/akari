@@ -8,7 +8,7 @@
         "preinstall": "only-allow pnpm",
         "format": "prettier --write *.{json,js,ts} .prettierrc",
         "build": "pnpm run --recursive build",
-        "start": "pnpm --filter=akari-misskey start"
+        "start": "pnpm --filter=akari-misskey --filter=akari-discord start"
     },
     "devDependencies": {
         "only-allow": "^1.2.1",

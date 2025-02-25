@@ -11,4 +11,8 @@ misskey:
     protocol: 'https:'
 
   # Misskey botのトークン。
-  token: TOKEN
+  token: MISSKEY_TOKEN
+
+discord:
+  # Discord botのトークン。
+  token: DISCORD_TOKEN

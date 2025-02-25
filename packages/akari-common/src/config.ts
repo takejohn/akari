@@ -25,6 +25,9 @@ const configSchema = z.object({
         }),
         token: z.string(),
     }),
+    discord: z.object({
+        token: z.string(),
+    }),
 });
 
 export async function loadConfig(): Promise<Config> {

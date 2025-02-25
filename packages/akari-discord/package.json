@@ -1,0 +1,19 @@
+{
+    "name": "akari-discord",
+    "description": "Implementation for Discord",
+    "author": "Take-John",
+    "license": "MIT",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/esm/index.js"
+    },
+    "dependencies": {
+        "@discordeno/bot": "^21.0.0",
+        "akari-common": "workspace:^"
+    },
+    "devDependencies": {
+        "@types/node": "^22.13.5"
+    }
+}

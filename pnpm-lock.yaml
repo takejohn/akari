@@ -31,7 +31,14 @@ importers:
         specifier: ^22.13.5
         version: 22.13.5
 
-  packages/akari-core:
+  packages/akari-discord:
+    dependencies:
+      '@discordeno/bot':
+        specifier: ^21.0.0
+        version: 21.0.0
+      akari-common:
+        specifier: workspace:^
+        version: link:../akari-common
     devDependencies:
       '@types/node':
         specifier: ^22.13.5
@@ -48,6 +55,21 @@ importers:
 
 packages:
 
+  '@discordeno/bot@21.0.0':
+    resolution: {integrity: sha512-x6EcVHBvWIhjY5/lcwgZzzCiqdpKFZqu2qUaZqKb7RYS8L8Q8zY40hCnbToVehLB8+BGcnHzxCeEvWWg8tnT/g==}
+
+  '@discordeno/gateway@21.0.0':
+    resolution: {integrity: sha512-ur5Hatd1x86PPI4UnXKghAWat3vS90NvLJcpOSu1B1gYSENRZow8dohZ8Ov58SXWq5nZVuBYDJNCR248pWJvrg==}
+
+  '@discordeno/rest@21.0.0':
+    resolution: {integrity: sha512-ew5ddhUd7Qyv/GSzCy42bEmRv0yr2PspCMsLD/NeMiTLd3+OrVN5pAxBN9z+9JpS/daiiD/PVmvuUAVx/nXTEw==}
+
+  '@discordeno/types@21.0.0':
+    resolution: {integrity: sha512-TUZAEqqlXRNQji+NCaQo8DruzI8rXbBvMaZYsZvN9f03PrdSddzMOy3cjs4eeL6ZMVocmMVRIaVnB713blylCw==}
+
+  '@discordeno/utils@21.0.0':
+    resolution: {integrity: sha512-I7I3Szlk+LkT/CRmJJiLPsjuBUjbuXUCvOzsgWCltkxDMIGmQeNoQtFK7t89V1Gcc4icsrnHVMho1BcaAITijg==}
+
   '@simplewebauthn/types@12.0.0':
     resolution: {integrity: sha512-q6y8MkoV8V8jB4zzp18Uyj2I7oFp2/ONL8c3j8uT06AOWu3cIChc1au71QYHrP2b+xDapkGTiv+9lX7xkTlAsA==}
 
@@ -56,6 +78,9 @@ packages:
 
   eventemitter3@5.0.1:
     resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
+
+  fzstd@0.1.1:
+    resolution: {integrity: sha512-dkuVSOKKwh3eas5VkJy1AW1vFpet8TA/fGmVA5krThl8YcOVE/8ZIoEA1+U1vEn5ckxxhLirSdY837azmbaNHA==}
 
   misskey-js@2025.2.1-alpha.0:
     resolution: {integrity: sha512-wAdywg0s/zeOvAF0HyaAeiQx4xzJd8rqdZtC1YjLG/GDHgIgT4VbdfZiGgpMIb/nZrBTtdSNY15eJY940ZBikA==}
@@ -84,6 +109,18 @@ packages:
     resolution: {integrity: sha512-n1brCuqClxfFfq/Rb0ICg9giSZqCS+pLtccdag6C2HyufBrh3fBOiy9nb6ggRMvWOVH5GrdJskj5iGTZNxd7SA==}
     engines: {node: '>=4'}
 
+  ws@8.18.1:
+    resolution: {integrity: sha512-RKW2aJZMXeMxVpnZ6bck+RswznaxmzdULiBr6KY7XkTnW8uvt0iT9H5DkHUChXrc+uurzwa0rVI16n/Xzjdz1w==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
   yaml@2.7.0:
     resolution: {integrity: sha512-+hSoy/QHluxmC9kCIJyL/uyFmLmc+e5CFR5Wa+bpIhIj85LVb9ZH2nVnqrHoSvKogwODv0ClqZkmiSSaIH5LTA==}
     engines: {node: '>= 14'}
@@ -94,6 +131,38 @@ packages:
 
 snapshots:
 
+  '@discordeno/bot@21.0.0':
+    dependencies:
+      '@discordeno/gateway': 21.0.0
+      '@discordeno/rest': 21.0.0
+      '@discordeno/types': 21.0.0
+      '@discordeno/utils': 21.0.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@discordeno/gateway@21.0.0':
+    dependencies:
+      '@discordeno/types': 21.0.0
+      '@discordeno/utils': 21.0.0
+      ws: 8.18.1
+    optionalDependencies:
+      fzstd: 0.1.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@discordeno/rest@21.0.0':
+    dependencies:
+      '@discordeno/types': 21.0.0
+      '@discordeno/utils': 21.0.0
+
+  '@discordeno/types@21.0.0': {}
+
+  '@discordeno/utils@21.0.0':
+    dependencies:
+      '@discordeno/types': 21.0.0
+
   '@simplewebauthn/types@12.0.0': {}
 
   '@types/node@22.13.5':
@@ -101,6 +170,9 @@ snapshots:
       undici-types: 6.20.0
 
   eventemitter3@5.0.1: {}
+
+  fzstd@0.1.1:
+    optional: true
 
   misskey-js@2025.2.1-alpha.0:
     dependencies:
@@ -121,6 +193,8 @@ snapshots:
   undici-types@6.20.0: {}
 
   which-pm-runs@1.1.0: {}
+
+  ws@8.18.1: {}
 
   yaml@2.7.0: {}
 

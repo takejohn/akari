@@ -1,0 +1,14 @@
+misskey:
+  origin:
+    # Misskeyのインスタンスのホスト。
+    # ポート番号を指定する場合は以下のように':'とポート番号を続ける。
+    # host: localhost:3000
+    host: example.com
+
+    # Misskeyのインスタンスが使用しているプロトコルスキーム。
+    # 'https:'または'http:'。
+    # デフォルト: 'https:'
+    protocol: 'https:'
+
+  # Misskey botのトークン。
+  token: TOKEN

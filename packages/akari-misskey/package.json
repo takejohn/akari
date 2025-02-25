@@ -1,0 +1,16 @@
+{
+    "name": "akari-misskey",
+    "description": "Implementation for Misskey",
+    "author": "Take-John",
+    "license": "MIT",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/esm/index.js"
+    },
+    "dependencies": {
+        "akari-common": "workspace:^",
+        "misskey-js": "2025.2.1-alpha.0"
+    }
+}

@@ -10,10 +10,15 @@ const apiClient = new Misskey.api.APIClient({
 });
 const handler = new Handler();
 
+const i = await apiClient.request('i', {});
+
 const channel = stream.useChannel('main');
 
 channel.on('mention', async (payload) => {
     try {
+        if (Misskey.acct.toString(payload.user) == Misskey.acct.toString(i)) {
+            return;
+        }
         handler.onMention({
             content: payload.text,
             async reply(content) {
